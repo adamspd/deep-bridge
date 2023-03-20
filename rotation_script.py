@@ -6,9 +6,7 @@ pip 23.0
 Pour installer les bibliothèques, utilisez la commande suivante :
 - pip install -r requirements.txt
 """
-import logging
 import os
-from tkinter import filedialog
 
 import pydicom
 import numpy as np
@@ -38,14 +36,18 @@ dossier : le chemin vers LE dossier patient à afficher,
 
 ROTATION_X = 332
 files = []
-dossier = "/Users/adamspierredavid/developer/PycharmProjects/deep_bridge/deep-bridge-tpt/patients/dossier_1/*"
+dossier = "/Users/adamspierredavid/developer/PycharmProjects/deep_bridge/deep-bridge/data/1359723314"
 
 """
 Chargement des fichiers
 """
 print('glob: {}'.format(dossier))
-for filename in glob.glob(dossier, recursive=False):
-    files.append(pydicom.dcmread(filename, force=True))
+for root, dirs, filenames in os.walk(dossier):
+    for filename in filenames:
+        if filename.endswith('.dcm'):
+            filepath = os.path.join(root, filename)
+            files.append(pydicom.dcmread(filepath, force=True))
+
 print("file count: {}".format(len(files)))
 
 """
@@ -67,7 +69,8 @@ Ordonner les fichiers
 """
 
 slices = sorted(slices, key=lambda s: s.SliceLocation)
-
+print(len(files))
+print(len(slices))
 img_shape = list(slices[0].pixel_array.shape)
 img_shape.append(len(slices))
 
@@ -109,6 +112,7 @@ def img3d_with_rotation(angle, depth):
         imgFinal.append(rowArray)
 
     # Convert imgFinal to a NumPy array
+    print("imgFinal: {}".format(len(imgFinal)))
     return np.array(imgFinal)
 
 
