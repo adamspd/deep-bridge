@@ -5,7 +5,7 @@ carotidiennes, qui pourraient être invisibles à l'œil nu lors d'une première
 
 ## Contexte
 
-M. Galli nous a fourni un ensemble de dossier patient (150) contenant des fichiers DICOM et un script
+M. Galli nous a fourni un ensemble de dossiers patients (150) contenant des fichiers DICOM et un script
 [`rotation_script.py`](rotation_script.py). Ce script permet de lire un ensemble de fichiers DICOM pour un patient
 donné, d'analyser les images et d'afficher le résultat dans une fenêtre Tkinter. Notre objectif initial était
 de comprendre ce script, rédigé par les étudiants de l'année précédente, et de l'optimiser.
