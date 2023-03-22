@@ -3,7 +3,7 @@
 Le projet "Deep Bridge" vise à développer un programme basé sur l'intelligence artificielle pour détecter les sténoses
 carotidiennes, qui pourraient être invisibles à l'œil nu lors d'une première lecture des scanners.
 
-## Contexte
+# Contexte
 
 M. Galli nous a fourni un ensemble de dossiers patients (150) contenant des fichiers DICOM et un script
 [`rotation_script.py`](rotation_script.py). Ce script permet de lire un ensemble de fichiers DICOM pour un patient
@@ -13,7 +13,7 @@ de comprendre ce script, rédigé par les étudiants de l'année précédente, e
 Nous disposions également d'un dossier de fichiers DICOM fonctionnant parfaitement avec
 [`rotation_script.py`](rotation_script.py), utilisé pour tester le script.
 
-## Problèmes rencontrés
+# Problèmes rencontrés
 
 ### Problème 1 : Le téléchargement des dossiers de patients
 
@@ -27,7 +27,7 @@ Nous avons identifié que le script ne fonctionnait pas correctement avec certai
 découvert que les fichiers n'étaient parfois pas correctement classés dans les dossiers des patients et que certains
 scans ne contenaient qu'un seul fichier DICOM.
 
-## Ce qu'on a fait
+# Traitement des données
 
 Afin de résoudre ces problèmes, nous avons décidé d'écrire un autre script
 [`organize_dicom_files.py`](organize_dicom_files.py)qui lit tous les fichiers
