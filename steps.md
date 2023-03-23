@@ -6,7 +6,7 @@ Il y a 150 dossiers patients en tout à télécharger, dans le dossier, on trouv
 décompressés. On a donc besoin de décompresser les fichiers `.cab` une fois téléchargés.
 
 ## Étape 2 : Trier les fichiers DICOM par patient et par scan
-***
+
 À noter qu'avant d'exécuter le script [`organize_dicom_files.py`](organize_dicom_files.py), il **faut faire une copie**
 des dossiers patients dans un autre dossier. Parce que le script ne copie pas les fichiers dicom pour les organiser,
 mais il les déplace. Donc, si on veut garder les dossiers patients originaux, il faut faire une copie avant d'exécuter.
