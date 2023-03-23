@@ -36,7 +36,7 @@ dossier : le chemin vers LE dossier patient à afficher,
 
 ROTATION_X = 332
 files = []
-dossier = "/Users/adamspierredavid/developer/PycharmProjects/deep_bridge/deep-bridge-tpt/patients/dossier_1"
+dossier = "/Volumes/exFAT_Adams/deepbridge_result/0350623919/2.16.840.1.113669.632.21.1401581570.2685747106.20459161902428661"
 
 """
 Chargement des fichiers
@@ -44,7 +44,7 @@ Chargement des fichiers
 print('glob: {}'.format(dossier))
 for root, dirs, filenames in os.walk(dossier):
     for filename in filenames:
-        if filename.endswith('.dcm'):
+        if filename.endswith('.dcm') and not filename.startswith('.'):
             filepath = os.path.join(root, filename)
             files.append(pydicom.dcmread(filepath, force=True))
 

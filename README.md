@@ -426,6 +426,23 @@ fichiers contient 2 710 fichiers.
 | 2.16.840.1.113669.632.21.1401581570.2685747106.18791947372579301 | 2460          |
 | 2.16.840.1.113669.632.21.1653047040.1345728370.29055982323883213 | 2710          |
 
+
+
+Sachant que maintenant certains scans ne contiennent qu'un seul fichier, on va essayer de voir ce que contient 
+ce fichier et si on peut s'en servir pour la suite ou si on élimine ces scans.
+
+On a testé avec le patient dont l'ID est `0350623919` et le scan UID est 
+`2.16.840.1.113669.632.21.1401581570.2685747106.20459161902428661`. 
+
+Le chemin absolu du scan est le suivant :
+```bash
+/Volumes/exFAT_Adams/deepbridge_result/0350623919/2.16.840.1.113669.632.21.1401581570.2685747106.20459161902428661/1.2.840.113619.2.55.3.2148147470.648.1353479280.921.dcm
+```
+
+Cela sera surement différent sur votre machine. En lisant le fichier dicom avec le script
+[`rotation_script.py`](rotation_script.py) on constate déjà que le fichier dicom n'a pas d'attribut SliceLocation, donc 
+inutilisable pour la suite du script.
+
 # Notes
 
 [Étapes pour reconstruire le projet](steps.md)
