@@ -22,7 +22,7 @@ import tkinter
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg, NavigationToolbar2Tk)
 from matplotlib.backend_bases import key_press_handler
-from matplotlib.figure import Figure
+
 
 np.set_printoptions(threshold=sys.maxsize)
 
@@ -36,7 +36,7 @@ dossier : le chemin vers LE dossier patient à afficher,
 
 ROTATION_X = 332
 files = []
-dossier = "/Users/adamspierredavid/developer/PycharmProjects/deep_bridge/deep-bridge/data/1359723314"
+dossier = "/Users/adamspierredavid/developer/PycharmProjects/deep_bridge/deep-bridge-tpt/patients/dossier_1"
 
 """
 Chargement des fichiers
@@ -69,8 +69,8 @@ Ordonner les fichiers
 """
 
 slices = sorted(slices, key=lambda s: s.SliceLocation)
-print(len(files))
-print(len(slices))
+print(f"len(files): {len(files)}")
+print(f"len(slices): {len(slices)}")
 img_shape = list(slices[0].pixel_array.shape)
 img_shape.append(len(slices))
 
@@ -79,14 +79,18 @@ def rotate_x(origin_x, origin_y, x, y, angle_d):
     angle = angle_d * np.pi / 180
     dy = y - origin_y
     dyy = origin_y - y
+
     if origin_y <= y:
         cos = np.cos(angle) * dy
         sin = np.sin(angle) * dy
-        return cos + origin_y, sin + origin_x
     else:
         cos = np.cos(angle + np.pi) * dyy
         sin = np.sin(angle + np.pi) * dyy
-        return cos + origin_y, sin + origin_x
+
+    rotated_y = cos + origin_y
+    rotated_x = sin + origin_x
+
+    return rotated_y, rotated_x
 
 
 def img3d_with_rotation(angle, depth):
@@ -97,11 +101,15 @@ def img3d_with_rotation(angle, depth):
         img2d_len = len(img2d)
         for j in range(img2d_len):
             cos, sin = rotate_x(depth, ROTATION_X, depth, j, angle)
-            sin_floor = math.floor(sin)
-            sin_ceil = math.ceil(sin)
-            cos_floor = math.floor(cos)
-            cos_ceil = math.ceil(cos)
-            if sin_ceil >= 512 or cos_ceil >= 512:
+
+            sin_floor = np.floor(sin).astype(int)
+            sin_ceil = np.ceil(sin).astype(int)
+            cos_floor = np.floor(cos).astype(int)
+            cos_ceil = np.ceil(cos).astype(int)
+
+            image_size = img2d.shape[0]
+
+            if sin_ceil >= image_size or cos_ceil >= image_size:
                 rowArray.append(0)
             else:
                 rowArray.append(img2d[sin_floor][cos_floor])
