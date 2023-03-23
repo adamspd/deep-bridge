@@ -73,6 +73,10 @@ Après avoir exécuté le script [`organize_dicom_files.py`](organize_dicom_file
 |-----------------------------|-----------------|--------------------------|
 | 148                         | 192             | 135 572                  |
 
+
+<details>
+<summary>Tableau 3 : Nombre de scans par patient</summary>
+
 | ID Patient   | Nombre de Scans |
 |:-------------|:---------------:|
 | 1350553313   |        1        |
@@ -224,12 +228,19 @@ Après avoir exécuté le script [`organize_dicom_files.py`](organize_dicom_file
 | 0356693416   |       11        |
 | 1359723314   |       19        |
 
+</details>
+
+
 Suite à l'exécution du script, il est observé que 2 dossiers patients et 12 séries d'images ont été éliminés. De plus,
 2 436 fichiers DICOM ont été retirés du jeu de données.
 
 Il est également constaté que des incohérences subsistent concernant le nombre de fichiers DICOM par scan. On peut
 observer que certains scans ne contiennent qu'un seul fichier dicom alors que le scan avec le plus grand nombre de
 fichiers contient 2 003 fichiers (ne prend pas les fichiers dicom dont les noms commencent par un point).
+
+
+<details>
+<summary>Tableau 4 : Nombre de fichiers DICOM par scan</summary>
 
 | UID Scan                                                         | # DICOM files |
 |------------------------------------------------------------------|---------------|
@@ -426,6 +437,9 @@ fichiers contient 2 003 fichiers (ne prend pas les fichiers dicom dont les noms 
 | 2.16.840.1.113669.632.21.1535147779.1342553858.79108565923984814 | 1622          |
 | 2.16.840.1.113669.632.21.1669556745.10895155.1547144613254907137 | 2003          |
 
+</details>
+
+
 Sachant que maintenant certains scans ne contiennent qu'un seul fichier, on va essayer de voir ce que contient
 ce fichier et si on peut s'en servir pour la suite ou si on élimine ces scans.
 
@@ -447,8 +461,9 @@ fonction [`slice_location_search`](analyse_results.py) et tous les scans contena
 dicom n'ont pas d'attribut SliceLocation. On a 30 dossiers de scans qui contenaient des fichiers dicom sans
 attribut SliceLocation.
 
-Il nous reste ces dossiers à traiter : 
 
+<details>
+<summary>Tableau 5 : Il nous reste ces dossiers à traiter </summary>
 
 | UID Scan                                                         | # DICOM files |
 |------------------------------------------------------------------|---------------|
@@ -615,6 +630,7 @@ Il nous reste ces dossiers à traiter :
 | 2.16.840.1.113669.632.21.1535147779.1342553858.79108565923984814 | 1622          |
 | 2.16.840.1.113669.632.21.1669556745.10895155.1547144613254907137 | 2003          |
 
+</details>
 
 
 # Notes
