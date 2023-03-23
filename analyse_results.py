@@ -1,6 +1,8 @@
 import os
 import logging
 
+import pydicom
+
 
 # counts the number of subdirectories in a given directory.
 def count_subdirectories(path):
@@ -14,7 +16,7 @@ def count_subdirectories(path):
 # counts the number of files in a given directory and all its subdirectories.
 def count_files(path):
     try:
-        return sum([len(files) for r, d, files in os.walk(path)])
+        return sum([len([f for f in files if f.endswith('.dcm') and not f.startswith('.')]) for r, d, files in os.walk(path)])
     except FileNotFoundError:
         logging.error('Directory {} does not exist'.format(path))
         return 0
@@ -65,7 +67,7 @@ def count_dcm_files(path, result=None):
             dcm_files = 0
 
             for entry in os.scandir(path):
-                if entry.is_file() and entry.name.endswith('.dcm'):
+                if entry.is_file() and entry.name.endswith('.dcm') and not entry.name.startswith('.'):
                     dcm_files += 1
                 elif entry.is_dir():
                     subdirs.append(entry.path)
@@ -80,6 +82,29 @@ def count_dcm_files(path, result=None):
     except FileNotFoundError:
         logging.error('Directory {} does not exist'.format(path))
         return 0
+
+
+def slice_location_search(path):
+    for root, dirs, files in os.walk(path):
+        dicom_files = [f for f in files if f.endswith('.dcm') and not f.startswith('.')]
+
+        if dicom_files:
+            has_slice_location = False
+            for dicom_file in dicom_files:
+                dicom_path = os.path.join(root, dicom_file)
+                try:
+                    ds = pydicom.dcmread(dicom_path, stop_before_pixels=True)
+                    if 'SliceLocation' in ds:
+                        has_slice_location = True
+                        break
+                except pydicom.errors.InvalidDicomError:
+                    print(f"Invalid DICOM file: {dicom_path}")
+
+            if not has_slice_location:
+                print(f"{os.path.basename(root)}")
+
+        for directory in dirs:
+            slice_location_search(os.path.join(root, directory))
 
 
 if __name__ == '__main__':
@@ -113,3 +138,7 @@ if __name__ == '__main__':
 
     number_of_dcm_by_scan = count_dcm_files(directory_path_after_sorting)
     print(f"Nombre de fichiers dcm par scan: {number_of_dcm_by_scan}")
+
+    print(f"Starting slice location search...")
+    slice_location_search(directory_path_after_sorting)
+    print(f"Slice location search finished.")
