@@ -7,22 +7,17 @@ Pour installer les bibliothèques, utilisez la commande suivante :
 - pip install -r requirements.txt
 """
 import os
-
-import pydicom
-import numpy as np
-import matplotlib.pyplot as plt
-import scipy
-from matplotlib import cm
-from matplotlib.widgets import Slider, Button, RadioButtons
 import sys
-import glob
-from scipy import ndimage
-import math
 import tkinter
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pydicom
+from matplotlib import cm
+from matplotlib.backend_bases import key_press_handler
 from matplotlib.backends.backend_tkagg import (
     FigureCanvasTkAgg, NavigationToolbar2Tk)
-from matplotlib.backend_bases import key_press_handler
-
+from matplotlib.widgets import Slider
 
 np.set_printoptions(threshold=sys.maxsize)
 
@@ -36,7 +31,7 @@ dossier : le chemin vers LE dossier patient à afficher,
 
 ROTATION_X = 332
 files = []
-dossier = "/Volumes/exFAT_Adams/deepbridge_result/0350623919/2.16.840.1.113669.632.21.1401581570.2685747106.20459161902428661"
+dossier = "/Users/adamspierredavid/developer/PycharmProjects/deep_bridge/deep-bridge-tpt/patients/dossier_1"
 
 """
 Chargement des fichiers

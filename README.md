@@ -29,8 +29,8 @@ scans ne contenaient qu'un seul fichier DICOM.
 
 # Traitement des données
 
-Afin de résoudre ces problèmes, nous avons décidé d'écrire un autre script
-[`organize_dicom_files.py`](organize_dicom_files.py)qui lit tous les fichiers
+Afin de résoudre le problème du non fonctionnement avec tous les dossiers patients, nous avons décidé d'écrire 
+un autre script [`organize_dicom_files.py`](organize_dicom_files.py)qui lit tous les fichiers
 dans tous les dossiers et les classe par patient et par scan. Ceci nous permettra de nous assurer que les fichiers sont
 correctement organisés et facilitera l'analyse des images pour détecter les sténoses carotidiennes.
 
@@ -457,8 +457,8 @@ Cela sera surement différent sur votre machine. En lisant le fichier dicom avec
 inutilisable pour la suite du script.
 
 Pour être sûr que l'on ne peut pas utiliser ces scans, on a testé tous les scans de tous les patients avec la
-fonction [`slice_location_search`](analyse_results.py) et tous les scans contenant 1 fichier
-dicom n'ont pas d'attribut SliceLocation. On a 30 dossiers de scans qui contenaient des fichiers dicom sans
+fonction [`slice_location_search`](analyse_results.py) et tous les scans ne contenant qu'un seul fichier
+dicom n'ont pas d'attribut SliceLocation. On a en tout 30 dossiers de scans qui contenaient des fichiers dicom sans
 attribut SliceLocation.
 
 
@@ -635,4 +635,4 @@ attribut SliceLocation.
 
 # Notes
 
-[Étapes pour reconstruire le projet](steps.md)
+[1]: [Étapes pour reconstruire le projet](steps.md)
