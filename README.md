@@ -6,12 +6,12 @@ carotidiennes, qui pourraient être invisibles à l'œil nu lors d'une première
 # Contexte
 
 M. Galli nous a fourni un ensemble de dossiers patients (150) contenant des fichiers DICOM et un script
-[`rotation_script.py`](rotation_script.py). Ce script permet de lire un ensemble de fichiers DICOM pour un patient
+[`rotation_script.py`](rotation_script_1.py). Ce script permet de lire un ensemble de fichiers DICOM pour un patient
 donné, d'analyser les images et d'afficher le résultat dans une fenêtre Tkinter. Notre objectif initial était
 de comprendre ce script, rédigé par les étudiants de l'année précédente, et de l'optimiser.
 
 Nous disposions également d'un dossier de fichiers DICOM fonctionnant parfaitement avec
-[`rotation_script.py`](rotation_script.py), utilisé pour tester le script.
+[`rotation_script.py`](rotation_script_1.py), utilisé pour tester le script.
 
 # Problèmes rencontrés
 
@@ -453,7 +453,7 @@ Le chemin absolu du scan est le suivant :
 ```
 
 Cela sera surement différent sur votre machine. En lisant le fichier dicom avec le script
-[`rotation_script.py`](rotation_script.py) on constate déjà que le fichier dicom n'a pas d'attribut SliceLocation, donc
+[`rotation_script.py`](rotation_script_1.py) on constate déjà que le fichier dicom n'a pas d'attribut SliceLocation, donc
 inutilisable pour la suite du script.
 
 Pour être sûr que l'on ne peut pas utiliser ces scans, on a testé tous les scans de tous les patients avec la

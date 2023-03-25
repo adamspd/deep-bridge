@@ -25,7 +25,7 @@ avec des fichiers DICOM corrects, le nombre de scan par patient, le nombre de fi
 
 ## Étape 4 : Analyse des images
 
-Le script [`rotation_script.py`](rotation_script.py) permet d'analyser les images. Il enlève les fichiers
+Le script [`rotation_script.py`](rotation_script_1.py) permet d'analyser les images. Il enlève les fichiers
 ne contenant la métadonnée `Modality` et la métadonnée `SliceLocation`. On ne peut pas détecter les sténoses
 carotidiennes avec ce script automatiquement, mais on peut toutefois les voir sur les images dans les deux carotides
 avec la fonctionnalité de rotation que le script fournit.
