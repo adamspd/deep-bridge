@@ -64,8 +64,7 @@ Ordonner les fichiers
 """
 
 slices = sorted(slices, key=lambda s: s.SliceLocation)
-print(f"len(files): {len(files)}")
-print(f"len(slices): {len(slices)}")
+
 img_shape = list(slices[0].pixel_array.shape)
 img_shape.append(len(slices))
 
